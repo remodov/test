@@ -17,10 +17,8 @@ public class AccountTransferPerform {
      */
     public void transfer(Account accountFrom, Account accountTo, BigDecimal sum)
     {
-        System.out.println("TransferThread from "+ accountFrom + " to " + accountTo + " sum " + sum );
-
         Object lock1 =  accountFrom.getAccountId() < accountTo.getAccountId() ? accountFrom.getLock()  : accountTo.getLock();
-        Object lock2 =  accountFrom.getAccountId() < accountTo.getAccountId() ? accountTo.getLock()  : accountTo.getLock();
+        Object lock2 =  accountFrom.getAccountId() < accountTo.getAccountId() ? accountTo.getLock()  : accountFrom.getLock();
 
         //дополнительных проверок не вешал, показал упорядочивание блокировки
         synchronized(lock1) {
